@@ -25,7 +25,7 @@
 		input = input.replace(/\^([^^]*)\^/g, '<sup>$1</sup>');
 		input = input.replace(/~([^~]*)~/g, '<sub>$1</sub>');
 		input = input.replace(/-{3,}/g, "---");
-		input = input.replace(/([^-])-((?:[^ ])[^-]+)(?:[^ ])-/g, '$1~~$2~~');
+		input = input.replace(/(^|\n| )-((?:[^ ])[^-]+(?:[^ ]))-($|\n| )/g, '$1~~$2~~$3');
 
 		input = input.replace(/\{code(:([a-z]+))?\}([^]*?)\{code\}/gm, '```$2$3```');
 		input = input.replace(/\{quote\}([^]*)\{quote\}/gm, function(match, content) {
@@ -66,7 +66,6 @@
 				header_line += "|";
 
 				lines.splice(i+1, 0, header_line);
-
 			}
 		}
 
@@ -75,8 +74,6 @@
 		for (var i = 0; i < lines.length; i++) {
 			input += lines[i] + "\n"
 		}
-
-
 
 		return input;
 	};
