@@ -26,7 +26,7 @@
 		input = input.replace(/\+([^+]*)\+/g, '<ins>$1</ins>');
 		input = input.replace(/\^([^^]*)\^/g, '<sup>$1</sup>');
 		input = input.replace(/~([^~]*)~/g, '<sub>$1</sub>');
-		input = input.replace(/-([^-]*)-/g, '-$1-');
+		input = input.replace(/-([^-]*)-/g, '<s>$1</s>');
 
 		input = input.replace(/\{code(:([a-z]+))?\}([^]*?)\{code\}/gm, '```$2$3```');
 		input = input.replace(/\{quote\}([^]*)\{quote\}/gm, function(match, content) {
