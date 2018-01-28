@@ -12,9 +12,7 @@
 			return Array(parseInt(level) + 1).join('#') + content;
 		});
 
-		input = input.replace(/^bq\.(.*)$/gm, function (match, content) {
-			return '> ' + content + "\n";
-		});
+		input = input.replace(/^bq\.(.*)$/g, '> $1');
 
 		input = input.replace(/([*_])(.*)\1/g, function (match,wrapper,content) {
 			var to = (wrapper === '*') ? '**' : '*';
@@ -26,7 +24,8 @@
 		input = input.replace(/\+([^+]*)\+/g, '<ins>$1</ins>');
 		input = input.replace(/\^([^^]*)\^/g, '<sup>$1</sup>');
 		input = input.replace(/~([^~]*)~/g, '<sub>$1</sub>');
-		input = input.replace(/-([^-]*)-/g, '<s>$1</s>');
+		input = input.replace(/-{3,}/g, "---");
+		input = input.replace(/([^-])-([^-]+)-/g, '$1<s>$2</s>');
 
 		input = input.replace(/\{code(:([a-z]+))?\}([^]*?)\{code\}/gm, '```$2$3```');
 		input = input.replace(/\{quote\}([^]*)\{quote\}/gm, function(match, content) {
