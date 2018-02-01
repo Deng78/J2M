@@ -33,13 +33,10 @@
 		input = input.replace(/\{quote\}([^]*)\{quote\}/gm, function(match, content) {
 			lines = content.split(/\r?\n/gm);
 
-<<<<<<< HEAD
-=======
 		input = input.replace(/\{code(:([a-z]+))?\}([^]*?)\{code\}/gm, '```$2$3```');
 		input = input.replace(/\{quote\}([^]*)\{quote\}/gm, function(match, content) {
 			lines = content.split(/\r?\n/gm);
 
->>>>>>> citation-fix
 			for (var i = 0; i < lines.length; i++) {
 				lines[i] = '> ' + lines[i];
 			}
@@ -156,11 +153,7 @@
 			return to + content + to;
 		});
 
-<<<<<<< HEAD
 		input = input.replace(/<span style="color:([^";]+)">([^]*?)<\/span>/gm, '{color:$1}$2{color}');
-=======
-		input = input.replace(/<span style="color:(#[^"]+)">([^]*?)<\/span>/gm, '{color:$1}$2{color}');
->>>>>>> citation-fix
 
 		input = input.replace(/~~(.*?)~~/g, '-$1-');
 
