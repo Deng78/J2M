@@ -33,10 +33,6 @@
 		input = input.replace(/\{quote\}([^]*)\{quote\}/gm, function(match, content) {
 			lines = content.split(/\r?\n/gm);
 
-		input = input.replace(/\{code(:([a-z]+))?\}([^]*?)\{code\}/gm, '```$2$3```');
-		input = input.replace(/\{quote\}([^]*)\{quote\}/gm, function(match, content) {
-			lines = content.split(/\r?\n/gm);
-
 			for (var i = 0; i < lines.length; i++) {
 				lines[i] = '> ' + lines[i];
 			}
