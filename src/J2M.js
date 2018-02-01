@@ -12,7 +12,9 @@
 			return Array(parseInt(level) + 1).join('#') + content;
 		});
 
-		input = input.replace(/^bq\.(.*)$/g, '> $1');
+		input = input.replace(/^bq\.(.*)$/gm, function (match, content) {
+			return '> ' + content + "\n";
+		});
 
 		input = input.replace(/([*_])(.*)\1/g, function (match,wrapper,content) {
 			var to = (wrapper === '*') ? '**' : '*';
@@ -20,7 +22,7 @@
 		});
 
 		input = input.replace(/\{\{([^}]+)\}\}/g, '`$1`');
-		input = input.replace(/\?\?((?:.[^?]|[^?].)+)\?\?/g, '<cite>$1</cite>');
+		input = input.replace(/\?\?([^?]+)\?\?/g, '<cite>$1</cite>');
 		input = input.replace(/\+([^+]*)\+/g, '<ins>$1</ins>');
 		input = input.replace(/\^([^^]*)\^/g, '<sup>$1</sup>');
 		input = input.replace(/~([^~]*)~/g, '<sub>$1</sub>');
@@ -31,6 +33,13 @@
 		input = input.replace(/\{quote\}([^]*)\{quote\}/gm, function(match, content) {
 			lines = content.split(/\r?\n/gm);
 
+<<<<<<< HEAD
+=======
+		input = input.replace(/\{code(:([a-z]+))?\}([^]*?)\{code\}/gm, '```$2$3```');
+		input = input.replace(/\{quote\}([^]*)\{quote\}/gm, function(match, content) {
+			lines = content.split(/\r?\n/gm);
+
+>>>>>>> citation-fix
 			for (var i = 0; i < lines.length; i++) {
 				lines[i] = '> ' + lines[i];
 			}
@@ -147,7 +156,11 @@
 			return to + content + to;
 		});
 
+<<<<<<< HEAD
 		input = input.replace(/<span style="color:([^";]+)">([^]*?)<\/span>/gm, '{color:$1}$2{color}');
+=======
+		input = input.replace(/<span style="color:(#[^"]+)">([^]*?)<\/span>/gm, '{color:$1}$2{color}');
+>>>>>>> citation-fix
 
 		input = input.replace(/~~(.*?)~~/g, '-$1-');
 
