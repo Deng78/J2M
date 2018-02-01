@@ -10,9 +10,6 @@
 	 * @returns {string} - Markdown formatted text
 	 */
 	function toM(input) {
-		input = input.replace(/^h([0-6])\.(.*)$/gm, function (match,level,content) {
-			return Array(parseInt(level) + 1).join('#') + content;
-		});
 
 		input = input.replace(/^bq\.(.*)$/gm, function (match, content) {
 			return '> ' + content + "\n";
@@ -36,6 +33,11 @@
 			if (prefix == '#') prefix = '1.';
 
 			return Array(len).join(" ") + prefix + ' ' + content;
+		});
+
+		// headers, must be after numbered lists
+		input = input.replace(/^h([0-6])\.(.*)$/gm, function (match,level,content) {
+			return Array(parseInt(level) + 1).join('#') + content;
 		});
 
 		input = input.replace(/\{\{([^}]+)\}\}/g, '`$1`');
